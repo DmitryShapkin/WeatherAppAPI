@@ -23,6 +23,31 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let icon = WeatherIconManager.Rain.image
+        let currentWeather = CurrentWeather(temperature: 10.0, appearantTemperature: 5.0, humidity: 30.0, pressure: 750.0, icon: icon)
+        updateUIWith(currentWeather: currentWeather)
+        
+//        //let urlString = "https://api.darksky.net/forecast/d48c2431a956eab26f90837b5fb15778/37.8267,-122.4233"
+//        let baseURL = URL(string: "https://api.darksky.net/forecast/d48c2431a956eab26f90837b5fb15778/")
+//        let fullURL = URL(string: "37.8267,-122.4233", relativeTo: baseURL)
+//
+//        let sessionConfiguration = URLSessionConfiguration.default
+//        let session = URLSession(configuration: sessionConfiguration)
+//
+//        let request = URLRequest(url: fullURL!)
+//        let dataTask = session.dataTask(with: fullURL!) { (data, response, error) in
+//
+//        }
+//        dataTask.resume()
+    }
+    
+    func updateUIWith(currentWeather: CurrentWeather) {
+        self.imageView.image = currentWeather.icon
+        self.pressureLabel.text = currentWeather.pressureString
+        self.temperatureLabel.text = currentWeather.temperatureString
+        self.appearentTemperatureLabel.text = currentWeather.appearantTemperatureString
+        self.humidityLabel.text = currentWeather.humidityString
     }
 }
+
